@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "examenes")
+@Document(collection = "examen")
 public class Examen {
 	
 	 

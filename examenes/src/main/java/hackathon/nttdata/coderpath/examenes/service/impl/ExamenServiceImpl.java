@@ -3,14 +3,20 @@ package hackathon.nttdata.coderpath.examenes.service.impl;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
+import org.springframework.stereotype.Service;
 
+import hackathon.nttdata.coderpath.examenes.repository.ExamenRepository;
 import hackathon.nttdata.coderpath.examenes.config.ApplicationConfiguration;
 import hackathon.nttdata.coderpath.examenes.document.Examen;
-import hackathon.nttdata.coderpath.examenes.repository.ExamenRepository;
+import hackathon.nttdata.coderpath.examenes.service.ExamenService;
+import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-public class ExamenServiceImpl {
+
+@Service
+@RequiredArgsConstructor
+public class ExamenServiceImpl implements ExamenService {
 	
 	private final ExamenRepository ExamenRepository;
 	private final ApplicationConfiguration configuration;
@@ -27,17 +33,7 @@ public class ExamenServiceImpl {
 		return ExamenRepository.findAll();
 	}
 
-	@Override
-	public Mono<Examen> saves(examen document) {
-		// TODO Auto-generated method stub
-		return ExamenRepository.save(document);
-	}
 
-	@Override
-	public Mono<Void> delete(examen document) {
-		// TODO Auto-generated method stub
-		return ExamenRepository.delete(document);
-	}
 
 	@Override
 	public Map<String, Object> balanceadorTest() {
@@ -46,6 +42,18 @@ public class ExamenServiceImpl {
 		response.put("balanceador", configuration.getBalanceadorTest());
 		response.put("examen_asset", findAlls());
 		return response;
+	}
+
+	@Override
+	public Mono<Examen> saves(Examen document) {
+		// TODO Auto-generated method stub
+		return ExamenRepository.save(document);
+	}
+
+	@Override
+	public Mono<Void> delete(Examen document) {
+		// TODO Auto-generated method stub
+		return ExamenRepository.delete(document);
 	}
 	
 
