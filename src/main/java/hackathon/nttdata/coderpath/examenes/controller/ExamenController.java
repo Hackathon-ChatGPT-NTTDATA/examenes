@@ -17,14 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import hackathon.nttdata.coderpath.examenes.document.Examen;
 import hackathon.nttdata.coderpath.examenes.service.ExamenService;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
 
-@Value
+
 @RestController
 @Slf4j
 @RequiredArgsConstructor
