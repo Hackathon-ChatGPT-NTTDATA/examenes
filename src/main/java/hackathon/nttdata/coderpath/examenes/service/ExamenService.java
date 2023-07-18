@@ -8,7 +8,9 @@ import reactor.core.publisher.Mono;
 
 
 
+
 public interface ExamenService {
+	
 	Mono<Examen> findById(String id);
 
 	Flux<Examen> findAlls();

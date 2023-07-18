@@ -19,6 +19,7 @@ import reactor.core.publisher.Mono;
 public class ExamenServiceImpl implements ExamenService {
 	
 	private final ExamenRepository ExamenRepository;
+	
 	private final ApplicationConfiguration configuration;
 
 	@Override

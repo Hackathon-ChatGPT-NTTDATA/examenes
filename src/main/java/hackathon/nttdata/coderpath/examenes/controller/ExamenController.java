@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import hackathon.nttdata.coderpath.examenes.service.impl.KafkaProducer;
 import hackathon.nttdata.coderpath.examenes.document.Examen;
 import hackathon.nttdata.coderpath.examenes.service.ExamenService;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +33,22 @@ public class ExamenController {
 	
 	private final ExamenService service;
 	
+	private final KafkaProducer producer;
+	
+	@PostMapping("/producer/{topic}")
+	public ResponseEntity<Mono<?>> publishMessage(@PathVariable String topic, @Valid @RequestBody String message){
+		Mono.just(producer).doOnNext(t -> {
+			t.publishMessage(topic, message);
+		}).onErrorReturn(producer).onErrorResume(e -> Mono.just(producer))
+		.onErrorMap(f -> new InterruptedException(f.getMessage())).subscribe(x -> log.info(x.toString()));
+		Mono<String> pAsset = Mono.just(message);
+
+		if (pAsset != null) {
+			return new ResponseEntity<>(pAsset, HttpStatus.CREATED);
+		}
+		return new ResponseEntity<>(Mono.just(new Examen()), HttpStatus.I_AM_A_TEAPOT);
+	}
+	
 	
 	@GetMapping("/balanceador-test")
 	public ResponseEntity<?> balanceadorTest() {
@@ -46,11 +64,11 @@ public class ExamenController {
 	
 	@GetMapping("/id/{id}")
 	public Mono<Examen> searchById(@PathVariable String id) {
-		log.info("Personal Asset id: " + service.findById(id) + " con codigo: " + id);
+		log.info("Examen id: " + service.findById(id) + " con codigo: " + id);
 		return service.findById(id);
 	}
 	
-	@PostMapping("/create-Examen")
+	@PostMapping("/create-examen")
 	public Mono<Examen> createExamen(@Valid @RequestBody Examen examenAsset) {
 		log.info("Examenes hackathon NTTTDATA create: " + service.saves(examenAsset));
 		Mono.just(examenAsset).doOnNext(t -> {
@@ -82,8 +100,7 @@ public class ExamenController {
 		return new ResponseEntity<>(Mono.just(new Examen()), HttpStatus.I_AM_A_TEAPOT);
 	}
 	
-	@DeleteMapping("/"
-			+ "/{id}")
+	@DeleteMapping("/delete-examen/{id}")
 	public ResponseEntity<Mono<Void>> deleteExamenAsset(@PathVariable String id) {
 		Examen examenAsset = new Examen();
 		examenAsset.setId(id);
