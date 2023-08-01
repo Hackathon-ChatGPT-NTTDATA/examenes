@@ -1,22 +1,23 @@
 package hackathon.nttdata.coderpath.examenes.service.examenesrouter;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.DELETE;
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
-import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
-import static org.springframework.web.reactive.function.server.RequestPredicates.PUT;
 
-import javax.ws.rs.GET;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 import org.springframework.web.reactive.function.server.RouterFunction;
+import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 import org.springframework.web.reactive.function.server.ServerResponse;
+
+
+
+import hackathon.nttdata.coderpath.examenes.controller.handler.PreguntasHandler;
 
 @Configuration
 public class RouterConfig {
 	
 	@Bean
-	public RouterFunction<ServerResponse> rutas(PreguntaHandler handler){
+	public RouterFunction<ServerResponse> rutas(PreguntasHandler handler){
 		return route(GET("/webclient"), handler::listar)
 				.andRoute(GET("/webclient/{id}"), handler::getOne)
 				.andRoute(POST("/webclient/create-cursos"), handler::save)

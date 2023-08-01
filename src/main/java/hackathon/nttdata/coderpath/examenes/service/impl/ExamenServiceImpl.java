@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import hackathon.nttdata.coderpath.examenes.repository.ExamenRepository;
 import hackathon.nttdata.coderpath.examenes.config.ApplicationConfiguration;
 import hackathon.nttdata.coderpath.examenes.document.Examen;
+import hackathon.nttdata.coderpath.examenes.document.dtowebclient.Preguntas;
 import hackathon.nttdata.coderpath.examenes.service.ExamenService;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
@@ -55,6 +56,36 @@ public class ExamenServiceImpl implements ExamenService {
 	public Mono<Void> delete(Examen document) {
 		// TODO Auto-generated method stub
 		return ExamenRepository.delete(document);
+	}
+
+	@Override
+	public Flux<Preguntas> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Mono<Preguntas> findPreguntasById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Mono<Preguntas> save(Preguntas document) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Mono<Preguntas> update(Preguntas document, String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Mono<Void> delete(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
