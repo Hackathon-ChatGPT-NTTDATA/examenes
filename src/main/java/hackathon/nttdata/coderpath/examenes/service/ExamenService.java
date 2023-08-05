@@ -22,7 +22,9 @@ public interface ExamenService {
 	Mono<Void> delete(Examen document);
 
 	Map<String, Object> balanceadorTest();
-	
+	/*
+	 * seccion WEBCLIENT EXAMENES
+	 */
 	
 	Flux<Preguntas> findAll();
 
@@ -33,6 +35,11 @@ public interface ExamenService {
 	Mono<Preguntas> update(Preguntas document, String id);
 
 	Mono<Void> delete(String id);
+	
+	Map<String, Object> rutaWebClientTest();
+	
+	//con Examen y Curso
+			Mono<Examen> saveExamenesCurso(Examen document, String examenId);
 	
 	
 

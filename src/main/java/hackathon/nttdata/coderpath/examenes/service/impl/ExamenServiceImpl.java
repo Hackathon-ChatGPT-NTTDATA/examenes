@@ -2,6 +2,8 @@ package hackathon.nttdata.coderpath.examenes.service.impl;
 
 import java.util.Map;
 
+
+
 import com.google.common.collect.Maps;
 import org.springframework.stereotype.Service;
 
@@ -87,6 +89,19 @@ public class ExamenServiceImpl implements ExamenService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Map<String, Object> rutaWebClientTest() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Mono<Examen> saveExamenesCurso(Examen document, String examenId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 
 
