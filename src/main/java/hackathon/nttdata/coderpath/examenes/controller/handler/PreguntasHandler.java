@@ -1,6 +1,6 @@
 package hackathon.nttdata.coderpath.examenes.controller.handler;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -28,14 +28,14 @@ public class PreguntasHandler {
 
 	public Mono<ServerResponse> listar(ServerRequest request) {
 
-		return ServerResponse.ok().contentType(APPLICATION_JSON_UTF8).body(service.findAll(), Preguntas.class);
+		return ServerResponse.ok().contentType(APPLICATION_JSON).body(service.findAll(), Preguntas.class);
 	}
 
 	public Mono<ServerResponse> getOne(ServerRequest request) {
 
 		String id = request.pathVariable("id");
 
-		return service.findPreguntasById(id).flatMap(c -> ServerResponse.ok().contentType(APPLICATION_JSON_UTF8)
+		return service.findPreguntasById(id).flatMap(c -> ServerResponse.ok().contentType(APPLICATION_JSON)
 				.syncBody(c).switchIfEmpty(ServerResponse.notFound().build()));
 	}
 
