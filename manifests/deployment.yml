@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: hackathonchatgptnttdataexamenes 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hackathonchatgptnttdataexamenes
+  template:
+    metadata:
+      labels:
+        app: hackathonchatgptnttdataexamenes 
+    spec:
+      containers:
+        - name: hackathonchatgptnttdataexamenes 
+          image: acrcoderpath.azurecr.io/hackathonchatgptnttdataexamenes
+          ports:
+          - containerPort: 80
